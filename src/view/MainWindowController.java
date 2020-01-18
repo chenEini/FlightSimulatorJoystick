@@ -5,20 +5,18 @@ import javafx.fxml.FXML;
 import view_model.ViewModel;
 
 public class MainWindowController {
-	
+
 	ViewModel vm;
-	
+
 	@FXML
-	Slider aileron;
+	Slider throttle;
 	@FXML
 	Slider rudder;
-	//...
 
 	public void setViewModel(ViewModel vm) {
-		this.vm=vm;
-		vm.aileron.bind(aileron.valueProperty());
+		this.vm = vm;
+
+		vm.throttle.bind(throttle.valueProperty());
 		vm.rudder.bind(rudder.valueProperty());
-		
-		//...
 	}
 }
