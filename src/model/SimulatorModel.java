@@ -2,7 +2,9 @@ package model;
 
 public interface SimulatorModel {
 
-	void connectToSimulator(String ip, int port);
+	void connect(String ip, int port);
+
+	void disconnect();
 
 	void setThrottle(double v);
 

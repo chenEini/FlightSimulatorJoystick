@@ -1,14 +1,22 @@
 package view;
 
-import java.util.Observable;
-import java.util.Observer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import view_model.ViewModel;
 
-public class MainWindowController implements Observer {
+public class MainWindowController {
 
 	ViewModel vm;
+	
+	@FXML
+	Button openConnectPopup;
+	
+	@FXML
+	TextField connectionIp;
+	@FXML
+	TextField connectionPort;
 
 	@FXML
 	Slider throttle;
@@ -16,13 +24,10 @@ public class MainWindowController implements Observer {
 	Slider rudder;
 
 	public void setViewModel(ViewModel vm) {
+
 		this.vm = vm;
 
 		vm.throttle.bind(throttle.valueProperty());
 		vm.rudder.bind(rudder.valueProperty());
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
 	}
 }
