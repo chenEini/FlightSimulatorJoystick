@@ -29,8 +29,8 @@
    <center>
       <Group BorderPane.alignment="CENTER">
          <children>
-            <TextField maxHeight="20.0" maxWidth="150.0" prefHeight="20.0" prefWidth="150.0" />
-            <TextField maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="150.0" translateY="30.0" />
+            <TextField fx:id="simulatorIP" maxHeight="20.0" maxWidth="150.0" prefHeight="20.0" prefWidth="150.0" />
+            <TextField fx:id="simulatorPort" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="150.0" translateY="30.0" />
          </children>
       </Group>
    </center>

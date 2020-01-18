@@ -11,9 +11,12 @@ import view_model.ViewModel;
 import model.MySimulatorModel;
 
 public class Main extends Application {
+	public static Stage primaryStage;
 
 	@Override
 	public void start(Stage primaryStage) {
+		
+		Main.primaryStage = primaryStage;
 
 		MySimulatorModel simModel = new MySimulatorModel(); // Model
 
