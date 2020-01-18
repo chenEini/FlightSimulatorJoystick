@@ -4,8 +4,8 @@ import java.util.Observable;
 
 public class MySimulatorModel extends Observable implements SimulatorModel {
 
-	public void connectToFlightGear(String ip, int port) {
-		// connect to flight gear
+	@Override
+	public void connectToSimulator(String ip, int port) {
 	}
 
 	@Override

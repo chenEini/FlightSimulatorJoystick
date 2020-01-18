@@ -27,6 +27,7 @@ public class Main extends Application {
 
 			MainWindowController windowController = fxl.getController(); // View
 			windowController.setViewModel(simViewModel);
+			
 			simViewModel.addObserver(windowController);
 
 			Scene scene = new Scene(root, 400, 400);
