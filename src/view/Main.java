@@ -18,7 +18,6 @@ public class Main extends Application {
 		MySimulatorModel simModel = new MySimulatorModel(); // Model
 
 		ViewModel simViewModel = new ViewModel(simModel); // ViewModel
-		simModel.addObserver(simViewModel);
 
 		FXMLLoader fxl = new FXMLLoader();
 
@@ -27,8 +26,6 @@ public class Main extends Application {
 
 			MainWindowController windowController = fxl.getController(); // View
 			windowController.setViewModel(simViewModel);
-			
-			simViewModel.addObserver(windowController);
 
 			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
