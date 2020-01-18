@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.MainWindowController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+   <top>
+      <VBox prefHeight="201.0" prefWidth="270.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="17.0" prefWidth="102.0" text="aileron" />
-            <Slider fx:id="aileron" />
-            <Label prefHeight="17.0" prefWidth="97.0" text="rudder" />
-            <Slider fx:id="rudder" />
+            <Label prefHeight="17.0" prefWidth="52.0" rotate="90.0" text="throttle" translateX="-10.0" translateY="80.0" />
+            <Slider fx:id="throttle" max="0.0" min="-1.0" orientation="VERTICAL" translateX="25.0" />
+            <Slider fx:id="rudder" max="1.0" maxWidth="200.0" min="-1.0" translateX="25.0" />
+            <Label alignment="CENTER" maxWidth="200.0" prefHeight="17.0" prefWidth="196.0" text="rudder" translateX="30.0" />
+
          </children>
       </VBox>
-   </center>
+   </top>
 </BorderPane>
