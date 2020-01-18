@@ -1,6 +1,7 @@
 package model;
 
-public interface Model {
+public interface SimulatorModel {
+
 	void setThrottle(double v);
 
 	void setRudder(double v);

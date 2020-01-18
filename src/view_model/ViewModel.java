@@ -1,15 +1,17 @@
 package view_model;
 
+import java.util.Observer;
+import java.util.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import model.Model;
+import model.SimulatorModel;
 
-public class ViewModel {
+public class ViewModel extends Observable implements Observer {
 
-	Model model;
+	SimulatorModel model;
 	public DoubleProperty throttle, rudder, aileron, elevator;
 
-	public ViewModel(Model model) {
+	public ViewModel(SimulatorModel model) {
 		this.model = model;
 
 		throttle = new SimpleDoubleProperty();
@@ -22,5 +24,9 @@ public class ViewModel {
 		rudder.addListener((o, old, newVal) -> model.setRudder(newVal.doubleValue()));
 		aileron.addListener((o, old, newVal) -> model.setAileron(newVal.doubleValue()));
 		elevator.addListener((o, old, newVal) -> model.setElevator(newVal.doubleValue()));
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 	}
 }

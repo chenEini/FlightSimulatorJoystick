@@ -1,10 +1,12 @@
 package view;
 
-import javafx.scene.control.Slider;
+import java.util.Observable;
+import java.util.Observer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
 import view_model.ViewModel;
 
-public class MainWindowController {
+public class MainWindowController implements Observer {
 
 	ViewModel vm;
 
@@ -18,5 +20,9 @@ public class MainWindowController {
 
 		vm.throttle.bind(throttle.valueProperty());
 		vm.rudder.bind(rudder.valueProperty());
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 	}
 }

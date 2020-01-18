@@ -7,32 +7,34 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view_model.ViewModel;
-import model.Model;
-import model.MyModel;
+
+import model.MySimulatorModel;
 
 public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
 
-		Model m = new MyModel(); // Model
+		MySimulatorModel simModel = new MySimulatorModel(); // Model
 
-		ViewModel vm = new ViewModel(m); // ViewModel
+		ViewModel simViewModel = new ViewModel(simModel); // ViewModel
+		simModel.addObserver(simViewModel);
 
 		FXMLLoader fxl = new FXMLLoader();
 
 		try {
 			BorderPane root = fxl.load(getClass().getResource("MainWindow.fxml").openStream());
 
-			MainWindowController wc = fxl.getController(); // View
-			wc.setViewModel(vm);
+			MainWindowController windowController = fxl.getController(); // View
+			windowController.setViewModel(simViewModel);
+			simViewModel.addObserver(windowController);
 
 			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
