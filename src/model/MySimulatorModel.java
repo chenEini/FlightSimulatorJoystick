@@ -32,21 +32,25 @@ public class MySimulatorModel implements SimulatorModel {
 
 	@Override
 	public void setThrottle(double v) {
-		out.println("set controls/engines/engine/throttle " + v);
+		if (out != null)
+			out.println("set controls/engines/engine/throttle " + v);
 	}
 
 	@Override
 	public void setRudder(double v) {
-		out.println("set controls/flight/rudder " + v);
+		if (out != null)
+			out.println("set controls/flight/rudder " + v);
 	}
 
 	@Override
 	public void setAileron(double v) {
-		out.println("set controls/flight/aileron " + v);
+		if (out != null)
+			out.println("set controls/flight/aileron " + v);
 	}
 
 	@Override
 	public void setElevator(double v) {
-		out.println("set controls/flight/elevator " + v);
+		if (out != null)
+			out.println("set controls/flight/elevator " + v);
 	}
 }
