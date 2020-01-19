@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="140.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<BorderPane prefHeight="140.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <Button mnemonicParsing="false" text="Connect to FlightGear" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>
@@ -18,8 +18,8 @@
    <left>
       <Group BorderPane.alignment="CENTER">
          <children>
-            <Label text="Port : " translateY="30.0" />
-            <Label layoutY="-1.0" prefHeight="17.0" prefWidth="61.0" text="IP Adress : " />
+            <Label prefHeight="20.0" prefWidth="60.0" text="Port : " translateY="30.0" />
+            <Label prefHeight="20.0" prefWidth="60.0" text="IP Adress : " />
          </children>
          <BorderPane.margin>
             <Insets left="10.0" />
@@ -29,8 +29,8 @@
    <center>
       <Group BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="simulatorIP" maxHeight="20.0" maxWidth="150.0" prefHeight="20.0" prefWidth="150.0" />
-            <TextField fx:id="simulatorPort" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="150.0" translateY="30.0" />
+            <TextField fx:id="simulatorIP" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="155.0" />
+            <TextField fx:id="simulatorPort" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="155.0" translateY="30.0" />
          </children>
       </Group>
    </center>
