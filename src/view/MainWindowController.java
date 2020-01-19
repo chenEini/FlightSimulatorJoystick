@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view_model.ViewModel;
@@ -30,6 +31,15 @@ public class MainWindowController {
 	Slider throttle;
 	@FXML
 	Slider rudder;
+	
+	@FXML
+	private Slider rudderSlider;
+	@FXML
+	private Slider throttleSlider;
+	@FXML
+	private Circle joystick;
+	@FXML
+	private Circle frameCircle;
 
 	public void setViewModel(ViewModel vm) {
 
@@ -54,4 +64,5 @@ public class MainWindowController {
 		stage.setScene(new Scene(connectPopup));
 		stage.show();
 	}
+	
 }

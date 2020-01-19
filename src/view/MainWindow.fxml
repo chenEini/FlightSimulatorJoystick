@@ -25,7 +25,7 @@
                   <Font name="System Bold" size="14.0" />
                </font></Label>
             <Circle fx:id="frameCircle" fill="#c5c0c0" radius="100.0" stroke="WHITE" strokeType="INSIDE" translateX="90.0" translateY="40.0" />
-            <Circle fx:id="joystick" fill="#6d6767" onMouseDragged="#joystickDragged" onMousePressed="#joystickPressed" onMouseReleased="#joystickReleased" radius="33.0" stroke="#1a1919" strokeType="INSIDE" translateX="157.0" translateY="-93.0">
+            <Circle fx:id="joystick" fill="#6d6767" radius="33.0" stroke="#1a1919" strokeType="INSIDE" translateX="157.0" translateY="-93.0">
                <effect>
                   <DropShadow color="#0000009b" />
                </effect></Circle>
@@ -45,7 +45,7 @@
       </VBox>
    </right>
    <top>
-      <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Connect" BorderPane.alignment="TOP_LEFT" />
+      <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Connect" BorderPane.alignment="TOP_LEFT" onAction="#openConnectPopup"/>
    </top>
    <padding>
       <Insets left="5.0" top="5.0" />
