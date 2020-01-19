@@ -20,7 +20,7 @@ public class MainWindowController {
 	ViewModel vm;
 
 	@FXML
-	Button openConnectPopup;	
+	Button openConnectPopup;
 	@FXML
 	Button connect;
 
@@ -64,9 +64,9 @@ public class MainWindowController {
 	private void connectToFlightGear(ActionEvent event) throws IOException {
 		String ip = simulatorIP.getText();
 		String port = simulatorPort.getText();
-		
+
 		vm.connectToFlightGear(ip, port);
-		
+
 		Stage stage = (Stage) connect.getScene().getWindow();
 		stage.close();
 	}

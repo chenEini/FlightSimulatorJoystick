@@ -12,7 +12,7 @@ public class MySimulatorModel implements SimulatorModel {
 	public void connect(String ip, int port) {
 		try {
 			simulator = new Socket(ip, port);
-			out = new PrintWriter(simulator.getOutputStream());
+			out = new PrintWriter(simulator.getOutputStream(), true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,29 +32,21 @@ public class MySimulatorModel implements SimulatorModel {
 
 	@Override
 	public void setThrottle(double v) {
-		out.println("set /controls/engines/engine/throttle " + v);
-
-		System.out.println("throttle " + v); // for test only
+		out.println("set controls/engines/engine/throttle " + v);
 	}
 
 	@Override
 	public void setRudder(double v) {
-		out.println("set /controls/flight/rudder " + v);
-
-		System.out.println("rudder " + v); // for test only
+		out.println("set controls/flight/rudder " + v);
 	}
 
 	@Override
 	public void setAileron(double v) {
-		out.println("set /controls/flight/aileron " + v);
-
-		System.out.println("aileron " + v); // for test only
+		out.println("set controls/flight/aileron " + v);
 	}
 
 	@Override
 	public void setElevator(double v) {
-		out.println("set /controls/flight/elevator " + v);
-
-		System.out.println("elevator " + v); // for test only
+		out.println("set controls/flight/elevator " + v);
 	}
 }
