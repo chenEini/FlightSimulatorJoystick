@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import view_model.ViewModel;
 
 import model.MySimulatorModel;
+import model.SimulatorModel;
 
 public class Main extends Application {
 	public static Stage primaryStage;
@@ -18,7 +19,7 @@ public class Main extends Application {
 		
 		Main.primaryStage = primaryStage;
 
-		MySimulatorModel simModel = new MySimulatorModel(); // Model
+		SimulatorModel simModel = new MySimulatorModel(); // Model
 
 		ViewModel simViewModel = new ViewModel(simModel); // ViewModel
 
@@ -28,6 +29,7 @@ public class Main extends Application {
 			BorderPane root = fxl.load(getClass().getResource("MainWindow.fxml").openStream());
 
 			MainWindowController windowController = fxl.getController(); // View
+			
 			windowController.setViewModel(simViewModel);
 
 			Scene scene = new Scene(root, 400, 400);

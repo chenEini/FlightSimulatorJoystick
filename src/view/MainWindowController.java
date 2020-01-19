@@ -5,11 +5,11 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,13 +33,9 @@ public class MainWindowController {
 	Slider rudder;
 	
 	@FXML
-	private Slider rudderSlider;
+	Circle joystick;
 	@FXML
-	private Slider throttleSlider;
-	@FXML
-	private Circle joystick;
-	@FXML
-	private Circle frameCircle;
+	Circle frameCircle;
 
 	public void setViewModel(ViewModel vm) {
 
@@ -47,8 +43,8 @@ public class MainWindowController {
 
 		vm.throttle.bind(throttle.valueProperty());
 		vm.rudder.bind(rudder.valueProperty());
-		vm.simulatorIP.bind(simulatorIP.textProperty());
-		vm.simulatorPort.bind(simulatorPort.textProperty());
+		//vm.simulatorIP.bind(simulatorIP.textProperty());
+		//vm.simulatorPort.bind(simulatorPort.textProperty());
 	}
 
 	@FXML
@@ -56,7 +52,7 @@ public class MainWindowController {
 		FXMLLoader fxl = new FXMLLoader();
 		fxl.setController(this);
 
-		Parent connectPopup = (Parent) fxl.load(getClass().getResource("ConnectPopup.fxml").openStream());
+		BorderPane connectPopup = fxl.load(getClass().getResource("ConnectPopup.fxml").openStream());
 
 		Stage stage = new Stage();
 		stage.initModality(Modality.WINDOW_MODAL);
