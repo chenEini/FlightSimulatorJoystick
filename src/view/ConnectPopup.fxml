@@ -7,31 +7,38 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="140.0" prefWidth="250.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-   <bottom>
-      <Button mnemonicParsing="false" text="Connect to FlightGear" BorderPane.alignment="BOTTOM_RIGHT">
-         <BorderPane.margin>
-            <Insets bottom="5.0" right="5.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
-   <left>
-      <Group BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="20.0" prefWidth="60.0" text="Port : " translateY="30.0" />
-            <Label prefHeight="20.0" prefWidth="60.0" text="IP Adress : " />
-         </children>
-         <BorderPane.margin>
-            <Insets left="10.0" />
-         </BorderPane.margin>
-      </Group>
-   </left>
-   <center>
-      <Group BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="simulatorIP" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="155.0" />
-            <TextField fx:id="simulatorPort" maxHeight="25.0" maxWidth="155.0" prefHeight="25.0" prefWidth="155.0" translateY="30.0" />
-         </children>
-      </Group>
-   </center>
+<BorderPane prefHeight="140.0" prefWidth="250.0"
+	xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	<bottom>
+		<Button fx:id="connect" mnemonicParsing="false"
+			text="Connect to FlightGear" BorderPane.alignment="BOTTOM_RIGHT"
+			onAction="#connectToFlightGear">
+			<BorderPane.margin>
+				<Insets bottom="5.0" right="5.0" />
+			</BorderPane.margin>
+		</Button>
+	</bottom>
+	<left>
+		<Group BorderPane.alignment="CENTER">
+			<children>
+				<Label prefHeight="20.0" prefWidth="60.0" text="Port : "
+					translateY="30.0" />
+				<Label prefHeight="20.0" prefWidth="60.0" text="IP Adress : " />
+			</children>
+			<BorderPane.margin>
+				<Insets left="10.0" />
+			</BorderPane.margin>
+		</Group>
+	</left>
+	<center>
+		<Group BorderPane.alignment="CENTER">
+			<children>
+				<TextField fx:id="simulatorIP" maxHeight="25.0"
+					maxWidth="155.0" prefHeight="25.0" prefWidth="155.0" />
+				<TextField fx:id="simulatorPort" maxHeight="25.0"
+					maxWidth="155.0" prefHeight="25.0" prefWidth="155.0"
+					translateY="30.0" />
+			</children>
+		</Group>
+	</center>
 </BorderPane>

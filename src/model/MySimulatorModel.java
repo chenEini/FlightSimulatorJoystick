@@ -21,8 +21,10 @@ public class MySimulatorModel implements SimulatorModel {
 	@Override
 	public void disconnect() {
 		try {
-			out.close();
-			simulator.close();
+			if (out != null)
+				out.close();
+			if (simulator != null)
+				simulator.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

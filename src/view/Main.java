@@ -16,7 +16,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		
+
 		Main.primaryStage = primaryStage;
 
 		SimulatorModel simModel = new MySimulatorModel(); // Model
@@ -29,11 +29,15 @@ public class Main extends Application {
 			BorderPane root = fxl.load(getClass().getResource("MainWindow.fxml").openStream());
 
 			MainWindowController windowController = fxl.getController(); // View
-			
+
 			windowController.setViewModel(simViewModel);
 
 			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			primaryStage.setOnCloseRequest(E -> {
+				simViewModel.disconnectFromFlightGear();
+			});
 
 			primaryStage.setScene(scene);
 			primaryStage.show();

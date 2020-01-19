@@ -20,7 +20,9 @@ public class MainWindowController {
 	ViewModel vm;
 
 	@FXML
-	Button openConnectPopup;
+	Button openConnectPopup;	
+	@FXML
+	Button connect;
 
 	@FXML
 	TextField simulatorIP;
@@ -31,20 +33,17 @@ public class MainWindowController {
 	Slider throttle;
 	@FXML
 	Slider rudder;
-	
+
 	@FXML
 	Circle joystick;
 	@FXML
 	Circle frameCircle;
 
 	public void setViewModel(ViewModel vm) {
-
 		this.vm = vm;
 
 		vm.throttle.bind(throttle.valueProperty());
 		vm.rudder.bind(rudder.valueProperty());
-		//vm.simulatorIP.bind(simulatorIP.textProperty());
-		//vm.simulatorPort.bind(simulatorPort.textProperty());
 	}
 
 	@FXML
@@ -60,5 +59,15 @@ public class MainWindowController {
 		stage.setScene(new Scene(connectPopup));
 		stage.show();
 	}
-	
+
+	@FXML
+	private void connectToFlightGear(ActionEvent event) throws IOException {
+		String ip = simulatorIP.getText();
+		String port = simulatorPort.getText();
+		
+		vm.connectToFlightGear(ip, port);
+		
+		Stage stage = (Stage) connect.getScene().getWindow();
+		stage.close();
+	}
 }

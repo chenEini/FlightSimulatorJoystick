@@ -2,24 +2,17 @@ package view_model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import model.SimulatorModel;
 
 public class ViewModel {
 
 	SimulatorModel model;
 
-	public StringProperty simulatorIP;
-	public StringProperty simulatorPort;
 	public DoubleProperty throttle, rudder, aileron, elevator;
 
 	public ViewModel(SimulatorModel model) {
 
 		this.model = model;
-
-		simulatorIP = new SimpleStringProperty();
-		simulatorPort = new SimpleStringProperty();
 
 		throttle = new SimpleDoubleProperty();
 		rudder = new SimpleDoubleProperty();
@@ -33,8 +26,8 @@ public class ViewModel {
 		elevator.addListener((o, old, newVal) -> model.setElevator(newVal.doubleValue()));
 	}
 
-	public void connectToFlightGear() {
-		model.connect(simulatorIP.get(), Integer.parseInt(simulatorPort.get()));
+	public void connectToFlightGear(String ip, String port) {
+		model.connect(ip, Integer.parseInt(port));
 	}
 
 	public void disconnectFromFlightGear() {
