@@ -1,6 +1,8 @@
 package model;
 
 public interface SimulatorModel {
+	
+	void openDataServer(int port, int frequency);
 
 	void connect(String ip, int port);
 

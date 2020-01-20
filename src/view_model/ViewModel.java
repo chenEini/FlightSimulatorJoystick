@@ -24,6 +24,12 @@ public class ViewModel {
 		rudder.addListener((o, old, newVal) -> model.setRudder(newVal.doubleValue()));
 		aileron.addListener((o, old, newVal) -> model.setAileron(newVal.doubleValue()));
 		elevator.addListener((o, old, newVal) -> model.setElevator(newVal.doubleValue()));
+		
+		openServer();
+	}
+
+	private void openServer() {
+		model.openDataServer(5400,10);
 	}
 
 	public void connectToFlightGear(String ip, String port) {

@@ -1,13 +1,8 @@
 package model;
 
-import java.net.Socket;
-import java.io.PrintWriter;
 import interpreter.FlightSimulatorInterpreter;
 
 public class MySimulatorModel implements SimulatorModel {
-
-	private static Socket simulator = null;
-	private static PrintWriter out = null;
 
 	private FlightSimulatorInterpreter interpreter;
 
@@ -16,25 +11,21 @@ public class MySimulatorModel implements SimulatorModel {
 	}
 
 	@Override
+	public void openDataServer(int port, int frequency) {
+		int result = interpreter.interpret(new String[] { "openDataServer " + port + " " + frequency });
+		System.out.println(result); // for test only
+	}
+
+	@Override
 	public void connect(String ip, int port) {
-		try {
-			simulator = new Socket(ip, port);
-			out = new PrintWriter(simulator.getOutputStream(), true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		int result = interpreter.interpret(new String[] { "connect " + ip + " " + port });
+		System.out.println(result); // for test only
 	}
 
 	@Override
 	public void disconnect() {
-		try {
-			if (out != null)
-				out.close();
-			if (simulator != null)
-				simulator.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		int result = interpreter.interpret(new String[] { "disconnect" });
+		System.out.println(result); // for test only
 	}
 
 	@Override
@@ -45,25 +36,25 @@ public class MySimulatorModel implements SimulatorModel {
 
 	@Override
 	public void setThrottle(double v) {
-		if (out != null)
-			out.println("set controls/engines/engine/throttle " + v);
+		int result = interpreter.interpret(new String[] { "throttle = " + v });
+		System.out.println(result); // for test only
 	}
 
 	@Override
 	public void setRudder(double v) {
-		if (out != null)
-			out.println("set controls/flight/rudder " + v);
+		int result = interpreter.interpret(new String[] { "rudder = " + v });
+		System.out.println(result); // for test only
 	}
 
 	@Override
 	public void setAileron(double v) {
-		if (out != null)
-			out.println("set controls/flight/aileron " + v);
+		int result = interpreter.interpret(new String[] { "aileron = " + v });
+		System.out.println(result); // for test only
 	}
 
 	@Override
 	public void setElevator(double v) {
-		if (out != null)
-			out.println("set controls/flight/elevator " + v);
+		int result = interpreter.interpret(new String[] { "elevator = " + v });
+		System.out.println(result); // for test only
 	}
 }
