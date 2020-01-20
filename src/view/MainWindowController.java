@@ -130,7 +130,7 @@ public class MainWindowController {
 	@FXML
 	private void runScript(ActionEvent event) throws IOException {
 		if (simulatorScript.getText().length() != 0) {
-			String[] script = simulatorScript.getText().split("/n");
+			String[] script = simulatorScript.getText().split("\\r?\\n|\\r");
 			vm.runScript(script);
 		}
 	}
