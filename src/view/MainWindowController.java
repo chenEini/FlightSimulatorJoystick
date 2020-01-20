@@ -116,20 +116,22 @@ public class MainWindowController {
 				.sqrt(Math.pow(newTranslateX - joystickCenterX, 2) + Math.pow(newTranslateY - joystickCenterY, 2));
 
 		if (distance > frameRadius) {
-			// TODO
+			joystickReleased(me);
 		}
-
-		((Circle) (me.getSource())).setTranslateX(newTranslateX);
-		((Circle) (me.getSource())).setTranslateY(newTranslateY);
-
-		// normalize to range [-1,1]
-		double normalX = Math.round(((((newTranslateX - minX) / (maxX - minX)) * 2) - 1) * 100.00) / 100.00;
-		// normalize to range [-1,1]
-		double normalY = Math.round(((((newTranslateY - minY) / (maxY - minY)) * 2) - 1) * 100.00) / 100.00;
-
-		// send command only if manual mode is selected
-		aileron.set(normalX);
-		elevator.set(normalY);
+		else
+		{
+			((Circle) (me.getSource())).setTranslateX(newTranslateX);
+			((Circle) (me.getSource())).setTranslateY(newTranslateY);
+	
+			// normalize to range [-1,1]
+			double normalX = Math.round(((((newTranslateX - minX) / (maxX - minX)) * 2) - 1) * 100.00) / 100.00;
+			// normalize to range [-1,1]
+			double normalY = Math.round(((((newTranslateY - minY) / (maxY - minY)) * 2) - 1) * 100.00) / 100.00;
+	
+			// send command only if manual mode is selected
+			aileron.set(normalX);
+			elevator.set(normalY);
+		}
 	}
 
 	@FXML
