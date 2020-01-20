@@ -32,7 +32,7 @@ public class Main extends Application {
 
 			windowController.setViewModel(simViewModel);
 
-			Scene scene = new Scene(root, 400, 400);
+			Scene scene = new Scene(root, 640, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			primaryStage.setOnCloseRequest(E -> {
