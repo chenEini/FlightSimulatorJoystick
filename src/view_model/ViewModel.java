@@ -33,4 +33,8 @@ public class ViewModel {
 	public void disconnectFromFlightGear() {
 		model.disconnect();
 	}
+
+	public void runScript(String[] script) {
+		model.runScript(script);
+	}
 }

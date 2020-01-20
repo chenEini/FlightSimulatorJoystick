@@ -1,5 +1,8 @@
 package view;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.beans.property.DoubleProperty;
@@ -11,10 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view_model.ViewModel;
@@ -40,6 +45,13 @@ public class MainWindowController {
 	TextField simulatorIP;
 	@FXML
 	TextField simulatorPort;
+
+	@FXML
+	Button loadScript;
+	@FXML
+	Button runScript;
+	@FXML
+	TextArea simulatorScript;
 
 	@FXML
 	Slider throttle;
@@ -92,6 +104,38 @@ public class MainWindowController {
 	}
 
 	@FXML
+	private void loadScript(ActionEvent event) throws IOException {
+		FileChooser fc = new FileChooser();
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+		fc.getExtensionFilters().add(extFilter);
+
+		File file = fc.showOpenDialog(null);
+
+		String script = "";
+		String line;
+		if (file != null) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				while ((line = br.readLine()) != null) {
+					script = script + line + "\n";
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			simulatorScript.setText(script);
+		}
+	}
+
+	@FXML
+	private void runScript(ActionEvent event) throws IOException {
+		if (simulatorScript.getText().length() != 0) {
+			String[] script = simulatorScript.getText().split("/n");
+			vm.runScript(script);
+		}
+	}
+
+	@FXML
 	private void joystickPressed(MouseEvent me) {
 		orgSceneX = me.getSceneX();
 		orgSceneY = me.getSceneY();
@@ -117,17 +161,15 @@ public class MainWindowController {
 
 		if (distance > frameRadius) {
 			joystickReleased(me);
-		}
-		else
-		{
+		} else {
 			((Circle) (me.getSource())).setTranslateX(newTranslateX);
 			((Circle) (me.getSource())).setTranslateY(newTranslateY);
-	
+
 			// normalize to range [-1,1]
 			double normalX = Math.round(((((newTranslateX - minX) / (maxX - minX)) * 2) - 1) * 100.00) / 100.00;
 			// normalize to range [-1,1]
 			double normalY = Math.round(((((newTranslateY - minY) / (maxY - minY)) * 2) - 1) * 100.00) / 100.00;
-	
+
 			// send command only if manual mode is selected
 			aileron.set(normalX);
 			elevator.set(normalY);

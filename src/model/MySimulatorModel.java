@@ -2,11 +2,18 @@ package model;
 
 import java.net.Socket;
 import java.io.PrintWriter;
+import interpreter.FlightSimulatorInterpreter;
 
 public class MySimulatorModel implements SimulatorModel {
 
 	private static Socket simulator = null;
 	private static PrintWriter out = null;
+
+	private FlightSimulatorInterpreter interpreter;
+
+	public MySimulatorModel() {
+		this.interpreter = new FlightSimulatorInterpreter();
+	}
 
 	@Override
 	public void connect(String ip, int port) {
@@ -28,6 +35,12 @@ public class MySimulatorModel implements SimulatorModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void runScript(String[] script) {
+		int result = interpreter.interpret(script);
+		System.out.println(result); // for test only
 	}
 
 	@Override

@@ -6,6 +6,8 @@ public interface SimulatorModel {
 
 	void disconnect();
 
+	void runScript(String[] script);
+
 	void setThrottle(double v);
 
 	void setRudder(double v);
