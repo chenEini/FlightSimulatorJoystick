@@ -11,48 +11,77 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
-   <right>
-      <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="344.0" prefWidth="340.0" BorderPane.alignment="TOP_CENTER">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="⇦ Aileron ⇨" textAlignment="CENTER" translateX="150.0" translateY="65.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Text>
-            <Text rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="⇦ Elevator ⇨" textAlignment="CENTER" translateX="280.0" translateY="160.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Text>
-            <Label rotate="-90.0" text="Throttle" translateX="10.0" translateY="130.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Label>
-            <Circle fx:id="frameCircle" fill="#c5c0c0" radius="100.0" stroke="WHITE" strokeType="INSIDE" translateX="90.0" translateY="40.0" />
-            <Circle fx:id="joystick" fill="#6d6767" onMouseDragged="#joystickDragged" onMousePressed="#joystickPressed" onMouseReleased="#joystickReleased" radius="33.0" stroke="#1a1919" strokeType="INSIDE" translateX="157.0" translateY="-93.0">
-               <effect>
-                  <DropShadow color="#0000009b" />
-               </effect></Circle>
-            <Slider fx:id="rudder" blockIncrement="0.1" majorTickUnit="0.1" max="1.0" maxWidth="-Infinity" min="-1.0" minorTickCount="0" prefWidth="250.0" snapToTicks="true" translateX="65.0" translateY="-10.0">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin></Slider>
-            <Label text="Rudder" translateX="175.0" translateY="-10.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Label>
-            <Slider fx:id="throttle" blockIncrement="0.1" majorTickUnit="0.1" max="0.0" maxHeight="-Infinity" maxWidth="-Infinity" min="-1.0" minHeight="-Infinity" minorTickCount="0" orientation="VERTICAL" prefHeight="246.0" prefWidth="11.0" rotate="180.0" snapToTicks="true" translateX="40.0" translateY="-280.0">
-               <VBox.margin>
-                  <Insets left="5.0" />
-               </VBox.margin></Slider>
-         </children>
-      </VBox>
-   </right>
-   <top>
-      <Button mnemonicParsing="false" onAction="#openConnectPopup" prefHeight="34.0" prefWidth="71.0" text="Connect" BorderPane.alignment="TOP_LEFT" />
-   </top>
-   <padding>
-      <Insets left="5.0" top="5.0" />
-   </padding>
+<BorderPane prefHeight="300.0" prefWidth="300.0"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="view.MainWindowController">
+	<right>
+		<VBox maxHeight="-Infinity" minHeight="-Infinity"
+			prefHeight="344.0" prefWidth="340.0"
+			BorderPane.alignment="TOP_CENTER">
+			<children>
+				<Text strokeType="OUTSIDE" strokeWidth="0.0" text="⇦ Aileron ⇨"
+					textAlignment="CENTER" translateX="150.0" translateY="65.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Text>
+				<Text rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0"
+					text="⇦ Elevator ⇨" textAlignment="CENTER" translateX="280.0"
+					translateY="160.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Text>
+				<Label rotate="-90.0" text="Throttle" translateX="10.0"
+					translateY="130.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Label>
+				<Circle fx:id="frameCircle" fill="#c5c0c0" radius="100.0"
+					stroke="WHITE" strokeType="INSIDE" translateX="90.0"
+					translateY="40.0" />
+				<Circle fx:id="joystick" fill="#6d6767"
+					onMouseDragged="#joystickDragged" onMousePressed="#joystickPressed"
+					onMouseReleased="#joystickReleased" radius="33.0" stroke="#1a1919"
+					strokeType="INSIDE" translateX="157.0" translateY="-93.0">
+					<effect>
+						<DropShadow color="#0000009b" />
+					</effect>
+				</Circle>
+				<Slider fx:id="rudder" blockIncrement="0.1"
+					majorTickUnit="0.1" max="1.0" maxWidth="-Infinity" min="-1.0"
+					minorTickCount="0" prefWidth="250.0" snapToTicks="true"
+					translateX="65.0" translateY="-10.0">
+					<VBox.margin>
+						<Insets left="5.0" />
+					</VBox.margin>
+				</Slider>
+				<Label text="Rudder" translateX="175.0" translateY="-10.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Label>
+				<Slider fx:id="throttle" blockIncrement="0.1"
+					majorTickUnit="0.1" max="0.0" maxHeight="-Infinity"
+					maxWidth="-Infinity" min="-1.0" minHeight="-Infinity"
+					minorTickCount="0" orientation="VERTICAL" prefHeight="246.0"
+					prefWidth="11.0" rotate="180.0" snapToTicks="true"
+					translateX="40.0" translateY="-280.0">
+					<VBox.margin>
+						<Insets left="5.0" />
+					</VBox.margin>
+				</Slider>
+			</children>
+		</VBox>
+	</right>
+	<top>
+		<Button mnemonicParsing="false" onAction="#openConnectPopup"
+			prefHeight="34.0" prefWidth="71.0" text="Connect"
+			BorderPane.alignment="TOP_LEFT" />
+	</top>
+	<padding>
+		<Insets left="5.0" top="5.0" />
+	</padding>
 </BorderPane>

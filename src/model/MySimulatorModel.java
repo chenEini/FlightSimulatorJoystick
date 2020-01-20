@@ -1,7 +1,7 @@
 package model;
 
-import java.io.PrintWriter;
 import java.net.Socket;
+import java.io.PrintWriter;
 
 public class MySimulatorModel implements SimulatorModel {
 

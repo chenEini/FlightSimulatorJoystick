@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -24,13 +25,16 @@ public class MainWindowController {
 
 	double orgSceneX, orgSceneY;
 	double orgTranslateX, orgTranslateY;
+
 	DoubleProperty aileron = new SimpleDoubleProperty();
 	DoubleProperty elevator = new SimpleDoubleProperty();
-	
+
 	@FXML
 	Button openConnectPopup;
 	@FXML
 	Button connect;
+	@FXML
+	Label connectErrorMsg;
 
 	@FXML
 	TextField simulatorIP;
@@ -54,14 +58,8 @@ public class MainWindowController {
 		vm.rudder.bind(rudder.valueProperty());
 		vm.aileron.bind(aileron);
 		vm.elevator.bind(elevator);
-		
 	}
-//	public MainWindowController() {
-//	// TODO Auto-generated constructor stub
-//		aileron = new SimpleDoubleProperty();
-//		elevator = new SimpleDoubleProperty();
-//	} 
-	
+
 	@FXML
 	private void openConnectPopup(ActionEvent event) throws IOException {
 		FXMLLoader fxl = new FXMLLoader();
@@ -81,12 +79,18 @@ public class MainWindowController {
 		String ip = simulatorIP.getText();
 		String port = simulatorPort.getText();
 
-		vm.connectToFlightGear(ip, port);
+		if (ip.matches("^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$") && port.matches("^(\\d{1,4})")) {
 
-		Stage stage = (Stage) connect.getScene().getWindow();
-		stage.close();
+			vm.connectToFlightGear(ip, port);
+
+			Stage stage = (Stage) connect.getScene().getWindow();
+			stage.close();
+
+		} else {
+			connectErrorMsg.setText("Invalid IP or port, please try again");
+		}
 	}
-	
+
 	@FXML
 	private void joystickPressed(MouseEvent me) {
 		orgSceneX = me.getSceneX();
@@ -94,7 +98,7 @@ public class MainWindowController {
 		orgTranslateX = ((Circle) (me.getSource())).getTranslateX();
 		orgTranslateY = ((Circle) (me.getSource())).getTranslateY();
 	}
-	
+
 	@FXML
 	private void joystickDragged(MouseEvent me) {
 		double offsetX = me.getSceneX() - orgSceneX;
@@ -108,31 +112,26 @@ public class MainWindowController {
 		double maxY = joystickCenterY - frameRadius;
 		double minX = joystickCenterX - frameRadius;
 		double minY = joystickCenterY + frameRadius;
-		double distance = Math.sqrt(Math.pow(newTranslateX - joystickCenterX, 2) + Math.pow(newTranslateY - joystickCenterY, 2));
-		
+		double distance = Math
+				.sqrt(Math.pow(newTranslateX - joystickCenterX, 2) + Math.pow(newTranslateY - joystickCenterY, 2));
+
 		if (distance > frameRadius) {
-			
-			//TODO
+			// TODO
 		}
-		
+
 		((Circle) (me.getSource())).setTranslateX(newTranslateX);
 		((Circle) (me.getSource())).setTranslateY(newTranslateY);
-		
-		// normalize to range of [-1,1]
-		double normalX = Math
-				.round(((((newTranslateX - minX) / (maxX - minX)) * 2) - 1) * 100.00)
-				/ 100.00;
-		// normalize to range of [-1,1]
-		double normalY = Math
-				.round(((((newTranslateY - minY) / (maxY - minY)) * 2) - 1) * 100.00)
-				/ 100.00;
-		
+
+		// normalize to range [-1,1]
+		double normalX = Math.round(((((newTranslateX - minX) / (maxX - minX)) * 2) - 1) * 100.00) / 100.00;
+		// normalize to range [-1,1]
+		double normalY = Math.round(((((newTranslateY - minY) / (maxY - minY)) * 2) - 1) * 100.00) / 100.00;
+
 		// send command only if manual mode is selected
 		aileron.set(normalX);
 		elevator.set(normalY);
 	}
-	
-	
+
 	@FXML
 	private void joystickReleased(MouseEvent me) {
 		((Circle) (me.getSource()))
