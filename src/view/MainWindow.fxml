@@ -76,17 +76,17 @@
    <right>
       <VBox prefHeight="352.0" prefWidth="290.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Run">
+            <Button fx:id="runScript" mnemonicParsing="false" text="Run" onAction="#runScript">
                <VBox.margin>
                   <Insets left="242.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Load Script">
+            <Button fx:id="loadScript" mnemonicParsing="false" text="Load Script" onAction="#loadScript">
                <VBox.margin>
                   <Insets top="-25.0" />
                </VBox.margin>
             </Button>
-            <TextArea prefHeight="295.0" prefWidth="280.0" style="-fx-border-color: grey;">
+            <TextArea fx:id="simulatorScript" prefHeight="295.0" prefWidth="280.0" style="-fx-border-color: grey;">
                <VBox.margin>
                   <Insets right="10.0" top="5.0" />
                </VBox.margin>
