@@ -30,8 +30,7 @@ public class MySimulatorModel implements SimulatorModel {
 
 	@Override
 	public void runScript(String[] script) {
-		int result = interpreter.interpret(script);
-		System.out.println(result); // for test only
+		new Thread(() -> interpreter.interpret(script)).start();
 	}
 
 	@Override
