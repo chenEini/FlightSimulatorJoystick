@@ -1,59 +1,57 @@
 package model;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import interpreter.FlightSimulatorInterpreter;
 
 public class MySimulatorModel implements SimulatorModel {
 
 	private FlightSimulatorInterpreter interpreter;
+	private ExecutorService es;
 
 	public MySimulatorModel() {
 		this.interpreter = new FlightSimulatorInterpreter();
+		es = Executors.newFixedThreadPool(5);
 	}
 
 	@Override
 	public void openDataServer(int port, int frequency) {
-		int result = interpreter.interpret(new String[] { "openDataServer " + port + " " + frequency });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "openDataServer " + port + " " + frequency }));
 	}
 
 	@Override
 	public void connect(String ip, int port) {
-		int result = interpreter.interpret(new String[] { "connect " + ip + " " + port });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "connect " + ip + " " + port }));
 	}
 
 	@Override
 	public void disconnect() {
-		int result = interpreter.interpret(new String[] { "disconnect" });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "disconnect" }));
 	}
 
 	@Override
 	public void runScript(String[] script) {
-		new Thread(() -> interpreter.interpret(script)).start();
+		es.execute(() -> interpreter.interpret(script));
 	}
 
 	@Override
 	public void setThrottle(double v) {
-		int result = interpreter.interpret(new String[] { "throttle = " + v });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "throttle = " + v }));
 	}
 
 	@Override
 	public void setRudder(double v) {
-		int result = interpreter.interpret(new String[] { "rudder = " + v });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "rudder = " + v }));
 	}
 
 	@Override
 	public void setAileron(double v) {
-		int result = interpreter.interpret(new String[] { "aileron = " + v });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "aileron = " + v }));
 	}
 
 	@Override
 	public void setElevator(double v) {
-		int result = interpreter.interpret(new String[] { "elevator = " + v });
-		System.out.println(result); // for test only
+		es.execute(() -> interpreter.interpret(new String[] { "elevator = " + v }));
 	}
 }
