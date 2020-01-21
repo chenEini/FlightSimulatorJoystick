@@ -133,6 +133,7 @@ public class MainWindowController {
 			String[] script = simulatorScript.getText().split("\\r?\\n|\\r");
 			vm.runScript(script);
 		}
+		simulatorScript.clear();
 	}
 
 	@FXML
