@@ -156,8 +156,7 @@ public class MainWindowController {
 		double maxY = joystickCenterY - frameRadius;
 		double minX = joystickCenterX - frameRadius;
 		double minY = joystickCenterY + frameRadius;
-		double distance = Math
-				.sqrt(Math.pow(newTranslateX - joystickCenterX, 2) + Math.pow(newTranslateY - joystickCenterY, 2));
+		double distance = Math.sqrt(Math.pow(newTranslateX - joystickCenterX, 2) + Math.pow(newTranslateY - joystickCenterY, 2));
 
 		if (distance > frameRadius) {
 			joystickReleased(me);
@@ -178,10 +177,8 @@ public class MainWindowController {
 
 	@FXML
 	private void joystickReleased(MouseEvent me) {
-		((Circle) (me.getSource()))
-				.setTranslateX(frameCircle.getTranslateX() + frameCircle.getRadius() - joystick.getRadius());
-		((Circle) (me.getSource()))
-				.setTranslateY(frameCircle.getTranslateY() - frameCircle.getRadius() - joystick.getRadius());
+		((Circle) (me.getSource())).setTranslateX(frameCircle.getTranslateX() + frameCircle.getRadius() - joystick.getRadius());
+		((Circle) (me.getSource())).setTranslateY(frameCircle.getTranslateY() - frameCircle.getRadius() - joystick.getRadius());
 
 		aileron.set(0.0);
 		elevator.set(0.0);
