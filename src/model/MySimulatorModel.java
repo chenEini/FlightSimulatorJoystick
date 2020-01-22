@@ -23,16 +23,30 @@ public class MySimulatorModel implements SimulatorModel {
 	@Override
 	public void connect(String ip, int port) {
 		es.execute(() -> interpreter.interpret(new String[] { "connect " + ip + " " + port }));
+		bindDefaultValues();
 	}
 
 	@Override
 	public void disconnect() {
 		es.execute(() -> interpreter.interpret(new String[] { "disconnect" }));
+		es.shutdown();
+	}
+
+	private void bindDefaultValues() {
+		es.execute(() -> interpreter
+				.interpret(new String[] {
+						"var throttle = bind /controls/engines/current-engine/throttle",
+						"var aileron = bind /controls/flight/aileron",
+						"var elevator = bind /controls/flight/elevator",
+						"var rudder = bind /controls/flight/rudder" }));
 	}
 
 	@Override
 	public void runScript(String[] script) {
-		es.execute(() -> interpreter.interpret(script));
+		es.execute(() -> {
+			interpreter.interpret(script);
+			System.out.println("Takeoff script - done");
+		});
 	}
 
 	@Override
