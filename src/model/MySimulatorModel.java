@@ -1,71 +1,58 @@
 package model;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import interpreter.FlightSimulatorInterpreter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class MySimulatorModel implements SimulatorModel {
 
-	private FlightSimulatorInterpreter interpreter;
-	private ExecutorService es;
-
-	public MySimulatorModel() {
-		this.interpreter = new FlightSimulatorInterpreter();
-		es = Executors.newFixedThreadPool(5);
-	}
-
-	@Override
-	public void openDataServer(int port, int frequency) {
-		es.execute(() -> interpreter.interpret(new String[] { "openDataServer " + port + " " + frequency }));
-	}
+	Socket simulator = null;
+	PrintWriter out = null;
 
 	@Override
 	public void connect(String ip, int port) {
-		es.execute(() -> interpreter.interpret(new String[] { "connect " + ip + " " + port }));
-		bindDefaultValues();
+		try {
+			simulator = new Socket(ip, port);
+			out = new PrintWriter(simulator.getOutputStream(), true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			connect(ip, port);
+		}
 	}
 
 	@Override
 	public void disconnect() {
-		es.execute(() -> interpreter.interpret(new String[] { "disconnect" }));
-		es.shutdown();
-	}
-
-	private void bindDefaultValues() {
-		es.execute(() -> interpreter
-				.interpret(new String[] {
-						"var throttle = bind /controls/engines/current-engine/throttle",
-						"var aileron = bind /controls/flight/aileron",
-						"var elevator = bind /controls/flight/elevator",
-						"var rudder = bind /controls/flight/rudder" }));
-	}
-
-	@Override
-	public void runScript(String[] script) {
-		es.execute(() -> {
-			interpreter.interpret(script);
-			System.out.println("Takeoff script - done");
-		});
+		try {
+			if (simulator != null)
+				simulator.close();
+			if (out != null)
+				out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void setThrottle(double v) {
-		es.execute(() -> interpreter.interpret(new String[] { "throttle = " + v }));
+		if (out != null)
+			out.println("set controls/engines/engine/throttle " + v);
 	}
 
 	@Override
 	public void setRudder(double v) {
-		es.execute(() -> interpreter.interpret(new String[] { "rudder = " + v }));
+		if (out != null)
+			out.println("set controls/flight/rudder " + v);
 	}
 
 	@Override
 	public void setAileron(double v) {
-		es.execute(() -> interpreter.interpret(new String[] { "aileron = " + v }));
+		if (out != null)
+			out.println("set controls/flight/aileron " + v);
 	}
 
 	@Override
 	public void setElevator(double v) {
-		es.execute(() -> interpreter.interpret(new String[] { "elevator = " + v }));
+		if (out != null)
+			out.println("set controls/flight/elevator " + v);
 	}
 }
